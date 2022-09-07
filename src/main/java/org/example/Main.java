@@ -1,6 +1,7 @@
 package org.example;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 public class Main {
     public static void main(String[] args) {
@@ -35,8 +36,16 @@ public class Main {
         admin.viewStudentDetails("1");
         admin.updateStudentData("1","Randy","RandyRandy","123","13","Masr","Male");
         admin.viewStudentDetails("1");
-
-
+        Singleton.getSingleton().getCourses().add(new Course("1","Math"));
+        student.enrollCourse("1");
+        student.viewEnrollCourses();
+        Teacher teacher = new Teacher("5","ali","afa","554");
+        teacher.addAssignment("Assignment 1","Hi","1",new Date());
+        student.viewAssignments("1");
+        teacher.viewStudentsAssignedClasses();
+        teacher.getStudentsInCourse("1");
+        teacher.getAllCourses();
+        teacher.getStudentData("1");
 
     }
 }

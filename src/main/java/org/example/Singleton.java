@@ -4,9 +4,13 @@ import java.util.ArrayList;
 import java.util.HashSet;
 
 public class Singleton {
-    private HashSet<Teacher> teachers;
     private static Singleton singleton;
+    private HashSet<Teacher> teachers;
     private HashSet<Student> students;
+    private HashSet<Course> courses;
+    private HashSet<AssignmentSubmission> assignmentSubmissions;
+    private HashSet<CourseAttendance> courseAttendances;
+
     private Singleton() {}
     public HashSet<Teacher> getTeachers()
     {
@@ -26,6 +30,25 @@ public class Singleton {
         if (singleton == null)
             singleton = new Singleton();
         return singleton;
+    }
+    public HashSet<Course> getCourses()
+    {
+        if (courses == null)
+            courses = new HashSet<Course>();
+        return courses;
+    }
+
+    public HashSet<AssignmentSubmission> getAssignmentSubmissions()
+    {
+        if (assignmentSubmissions == null)
+            assignmentSubmissions = new HashSet<AssignmentSubmission>();
+        return assignmentSubmissions;
+    }
+    public HashSet<CourseAttendance> getCourseAttendances()
+    {
+        if (courseAttendances == null)
+            courseAttendances = new HashSet<CourseAttendance>();
+        return courseAttendances;
     }
 
 }
