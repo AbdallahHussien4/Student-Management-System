@@ -20,7 +20,7 @@ public class Admin {
     void addTeacher(String id, String name, String email, String number)
     {
         Teacher teacher = new Teacher(id,name,email,number);
-        System.out.println("Add teacher : " +name);
+        System.out.println("Added teacher : " +name);
         HashSet<Teacher> teachers = Singleton.getSingleton().getTeachers();
         if(teachers.contains(teacher))
             System.out.println("Teacher with ID: "+ id +" already exists.");
@@ -32,8 +32,9 @@ public class Admin {
         HashSet<Teacher> teachers = Singleton.getSingleton().getTeachers();
         boolean found = false;
         for (Teacher teacher : teachers) {
-            if(teacher.getId()==id)
+            if(teacher.getId().equals(id))
             {
+
                 teachers.remove(teacher);
                 found = true;
                 System.out.println("Teacher Removed");
@@ -57,9 +58,9 @@ public class Admin {
         HashSet<Teacher> teachers = Singleton.getSingleton().getTeachers();
         boolean found = false;
         for (Teacher teacher : teachers) {
-            if(teacher.getId()==id)
+            if(teacher.getId().equals(id))
             {
-                System.out.println("Teacher: "+ teacher.getName()+ " ID: "+teacher.getId()+ " Email: "+ teacher.getEmail()+ " Phone: "+ teacher.getMobileNumber());
+                System.out.println(teacher);
                 found = true;
             }
         }
@@ -72,7 +73,7 @@ public class Admin {
         HashSet<Teacher> teachers = Singleton.getSingleton().getTeachers();
         boolean found = false;
         for (Teacher teacher : teachers) {
-            if(teacher.getId()==id)
+            if(teacher.getId().equals(id))
             {
                 if(name!="")
                     teacher.setName(name);
@@ -93,7 +94,7 @@ public class Admin {
 
     void addStudent(Student student)
     {
-        System.out.println("Add student : " +student.getName());
+        System.out.println("Added student : " +student.getName());
         HashSet<Student> students = Singleton.getSingleton().getStudents();
         if(students.contains(student))
             System.out.println("Student with ID: "+ id +" already exists.");
@@ -105,7 +106,7 @@ public class Admin {
         HashSet<Student> students = Singleton.getSingleton().getStudents();
         boolean found = false;
         for (Student student : students) {
-            if(student.getId()==id)
+            if(student.getId().equals(id))
             {
                 students.remove(student);
                 found = true;
@@ -130,7 +131,7 @@ public class Admin {
         HashSet<Student> students = Singleton.getSingleton().getStudents();
         boolean found = false;
         for (Student student : students) {
-            if(student.getId()==id)
+            if(student.getId().equals(id))
             {
                 System.out.println("Student: "+ student.getName()+ " ID: "+student.getId()+ " Email: "+ student.getEmail()+ " Phone: "+ student.getMobileNumber()+ " Age: "+ student.getAge()+ "Address: "+student.getAddress()+ "Gender: "+student.getGender());
                 found = true;
@@ -144,7 +145,7 @@ public class Admin {
         HashSet<Student> students = Singleton.getSingleton().getStudents();
         boolean found = false;
         for (Student student : students) {
-            if(student.getId()==id)
+            if(student.getId().equals(id))
             {
                 if(name!="")
                     student.setName(name);

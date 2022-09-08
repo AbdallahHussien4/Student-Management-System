@@ -1,51 +1,73 @@
 package org.example;
 
-import java.util.ArrayList;
-import java.util.Date;
+import java.text.ParseException;
+import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void print(String words )
+    {
+        System.out.println(words);
+    }
 
-        ////////////Create Admin///////////////////
-        Admin admin = new Admin("1","Admin 1","Admin@School.com","0123456789");
+    public static void welcomeGeneral()
+    {
+        print("////////////// Welcome /////////////");
+        print("Please Enter Your Role Number:");
+        print("\t Admin : 1");
+        print("\t Teacher : 2");
+        print("\t Student : 3");
+        print("\t Exit : 0");
+    }
 
-        ////////////Test Teacher///////////////////
-        admin.addTeacher("1","Teacher 1","Teacher1@School.com","011111111");
-        admin.addTeacher("2","Teacher 2","Teacher2@School.com","011111111");
-        admin.addTeacher("2","Teacher 2","Teacher2@School.com","011111111");
-        admin.viewAllTeachers();
-        admin.removeTeacher("2");
-        admin.removeTeacher("3");
-        admin.viewAllTeachers();
-        admin.viewTeacherDetails("1");
-        admin.updateTeacherData("1","Randy","RandyRandy","123");
-        admin.viewTeacherDetails("1");
-
-        ////////////Test Student///////////////////
-        Student.StudentBuilder builder =new Student.StudentBuilder();
-        builder.id("1").name("Student1").age("15");
-        Student student = builder.build();
-        admin.addStudent(student);
-
-        builder =new Student.StudentBuilder();
-        builder.id("2").name("Student2").age("30");
-        student = builder.build();
-        admin.addStudent(student);
-        admin.removeStudent("3");
-        admin.viewAllStudents();
-        admin.viewStudentDetails("1");
-        admin.updateStudentData("1","Randy","RandyRandy","123","13","Masr","Male");
-        admin.viewStudentDetails("1");
-        Singleton.getSingleton().getCourses().add(new Course("1","Math"));
-        student.enrollCourse("1");
-        student.viewEnrollCourses();
-        Teacher teacher = new Teacher("5","ali","afa","554");
-        teacher.addAssignment("Assignment 1","Hi","1",new Date());
-        student.viewAssignments("1");
-        teacher.viewStudentsAssignedClasses();
-        teacher.getStudentsInCourse("1");
-        teacher.getAllCourses();
-        teacher.getStudentData("1");
-
+    public static void main(String[] args) throws ParseException {
+        Seeds.seed();
+        boolean exit = false;
+        while(true && !exit)
+        {
+            welcomeGeneral();
+            Scanner scanner = new Scanner(System.in);
+            String role = scanner.nextLine();
+            switch (role) {
+                case ("1"):
+                    Admin admin = new Admin("0","Admin1","Admin1@School.com","0123456789");
+                    boolean exitAdmin = false;
+                    while(true && !exitAdmin)
+                    {
+                        AdminUtil.welcomeAdmin();
+                        String function = scanner.nextLine();
+                        exitAdmin = AdminUtil.handelAdminLogic(admin,function);
+                    }
+                    break;
+                case ("2"):
+                    Teacher teacher = new Teacher("0","Teacher0","Teacher0@School.com","01234567891");
+                    boolean exitTeacher = false;
+                    while(true && !exitTeacher)
+                    {
+                        TeacherUtil.welcomeTeacher();
+                        String function = scanner.nextLine();
+                        exitTeacher = TeacherUtil.handelTeacherLogic(teacher,function);
+                    }
+                    break;
+                case ("3"):
+                    Student.StudentBuilder builder = new Student.StudentBuilder();
+                    builder.id("0").name("Student0");
+                    builder.build();
+                    Student student=new Student(builder);
+                    boolean exitStudent = false;
+                    while(true && !exitStudent)
+                    {
+                        StudentUtil.welcomeStudent();
+                        String function = scanner.nextLine();
+                        exitStudent = StudentUtil.handleStudentLogic(student,function);
+                    }
+                    break;
+                case ("0"):
+                    exit = true;
+                    break;
+                default:
+                    print("Please Enter Valid Role");
+                    break;
+            }
+        }
     }
 }

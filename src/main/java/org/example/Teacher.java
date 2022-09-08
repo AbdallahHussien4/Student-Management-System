@@ -26,7 +26,7 @@ public class Teacher {
         boolean found=false;
         for(Course course: courses)
         {
-            if(course.getId()==courseId)
+            if(course.getId().equals(courseId))
             {
                 course.addAssignment(assignment);
                 System.out.println("Assignment Added");
@@ -43,7 +43,7 @@ public class Teacher {
         for(Course course :Singleton.getSingleton().getCourses())
         {
             System.out.println("\tClass "+course.getName());
-            for(Student student : Singleton.getSingleton().getStudents())
+            for(Student student : course.getStudents())
             {
                 System.out.println("\t\t"+student.getName());
             }
@@ -52,16 +52,20 @@ public class Teacher {
 
     public void getStudentsInCourse(String courseId)
     {
-        System.out.print("All Students for ");
+        boolean found= false;
         for(Course course :Singleton.getSingleton().getCourses())
         {
-            if(course.getId()==courseId) {
+            if(course.getId().equals(courseId)) {
+                System.out.print("All Students for ");
                 System.out.println("Class " + course.getName());
-                for (Student student : Singleton.getSingleton().getStudents()) {
+                found = true;
+                for (Student student : course.getStudents()) {
                     System.out.println("\t\t" + student.getName());
                 }
             }
         }
+        if(!found)
+            System.out.println("Course not found");
     }
 
     public void getAllCourses()
@@ -77,7 +81,7 @@ public class Teacher {
         boolean found= false;
         for(Student student :Singleton.getSingleton().getStudents())
         {
-            if(student.getId()==studentID)
+            if(student.getId().equals(studentID))
             {
                 System.out.println(student);
                 found=true;
@@ -93,17 +97,28 @@ public class Teacher {
         Singleton.getSingleton().getCourseAttendances().add(ca);
         System.out.println("Attendance Submitted");
     }
+
+    @Override
+    public String toString() {
+        return "Teacher{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ", mobileNumber='" + mobileNumber + '\'' +
+                '}';
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Teacher teacher = (Teacher) o;
-        return Objects.equals(id, teacher.id) && Objects.equals(name, teacher.name) && Objects.equals(email, teacher.email) && Objects.equals(mobileNumber, teacher.mobileNumber);
+        return Objects.equals(id, teacher.id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, email, mobileNumber);
+        return Objects.hash(id);
     }
 
 

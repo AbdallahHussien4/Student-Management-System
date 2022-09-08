@@ -81,7 +81,7 @@ public class Student {
         boolean found = false;
         for (Course course : courses) {
 
-            if(course.getId()==courseID)
+            if(course.getId().equals(courseID))
             {
                 course.getStudents().add(this);
                 this.courses.add(course);
@@ -95,7 +95,7 @@ public class Student {
 
     public void viewEnrollCourses()
     {
-        if(Singleton.getSingleton().getCourses().isEmpty())
+        if(this.courses.isEmpty())
         {
             System.out.println("Student is not enrolled in any courses");
             return;
@@ -112,7 +112,7 @@ public class Student {
         boolean found=false;
         for(Course course:Singleton.getSingleton().getCourses())
         {
-            if(course.getId()==courseId)
+            if(course.getId().equals(courseId))
             {
                 System.out.println("List of Assignments");
                 found = true;
@@ -151,12 +151,12 @@ public class Student {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Student student = (Student) o;
-        return id.equals(student.id) && Objects.equals(name, student.name) && Objects.equals(email, student.email) && Objects.equals(mobileNumber, student.mobileNumber) && Objects.equals(age, student.age) && Objects.equals(address, student.address) && Objects.equals(gender, student.gender);
+        return id.equals(student.id) ;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, email, mobileNumber, age, address, gender);
+        return Objects.hash(id);
     }
 
 
