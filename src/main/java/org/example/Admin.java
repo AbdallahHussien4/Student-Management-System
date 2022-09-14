@@ -3,17 +3,11 @@ package org.example;
 import java.util.ArrayList;
 import java.util.HashSet;
 
-public class Admin {
-    private String id;
-    private String name;
-    private String email;
-    private String mobileNumber;
+public class Admin extends User{
+
 
     public Admin(String id, String name, String email, String mobileNumber) {
-        this.id = id;
-        this.name = name;
-        this.email = email;
-        this.mobileNumber = mobileNumber;
+        super(id,name,email,mobileNumber);
     }
 
     //////////// Manage Teachers Functions ////////////
@@ -99,7 +93,7 @@ public class Admin {
         System.out.println("Added student : " +student.getName());
         HashSet<Student> students = Singleton.getSingleton().getStudents();
         if(students.contains(student))
-            System.out.println("Student with ID: "+ id +" already exists.");
+            System.out.println("Student with ID: "+ student.getId() +" already exists.");
         students.add(student);
     }
     void removeStudent(String id)
@@ -168,36 +162,5 @@ public class Admin {
         }
         if(!found)
             System.out.println("Student not found");
-    }
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getMobileNumber() {
-        return mobileNumber;
-    }
-
-    public void setMobileNumber(String mobileNumber) {
-        this.mobileNumber = mobileNumber;
     }
 }

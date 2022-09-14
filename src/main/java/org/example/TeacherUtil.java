@@ -5,14 +5,14 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Scanner;
 
-public class TeacherUtil {
+public class TeacherUtil implements UserUtilInterface {
     public static void print(String words )
     {
         System.out.println(words);
     }
 
-    public static void welcomeTeacher()
-    {
+    @Override
+    public void welcome() {
         print("////////////// Welcome Teacher /////////////");
         print("Choose a function :");
         print("\t 1: View All Students in All Courses");
@@ -24,31 +24,31 @@ public class TeacherUtil {
         print("\t 0: Log Out");
     }
 
-    public static boolean  handelTeacherLogic(Teacher teacher,String function) throws ParseException {
-
+    @Override
+    public boolean handleLogic(User user, String function) {
         Scanner scanner = new Scanner(System.in);
         switch (function) {
             case ("0"):
                 return true;
             case ("1"):
                 print("////////////// Viewing All Students /////////////");
-                teacher.viewStudentsAssignedClasses();
+                ((Teacher)user).viewStudentsAssignedClasses();
                 break;
             case ("2"):
                 print("////////////// Viewing in One Course /////////////");
                 print("Enter The Course's ID");
                 String id = scanner.nextLine();
-                teacher.getStudentsInCourse(id);
+                ((Teacher)user).getStudentsInCourse(id);
                 break;
             case ("3"):
                 print("////////////// Viewing All Courses /////////////");
-                teacher.getAllCourses();
+                ((Teacher)user).getAllCourses();
                 break;
             case ("4"):
                 print("////////////// Viewing Student's Data /////////////");
                 print("Enter The Student's ID");
                 id = scanner.nextLine();
-                teacher.getStudentData(id);
+                ((Teacher)user).getStudentData(id);
                 break;
             case ("5"):
                 print("////////////// Adding Assignment /////////////");
@@ -61,8 +61,14 @@ public class TeacherUtil {
                 String courseId = scanner.nextLine();
                 print("\tDue Date On Format dd/mm/yyyy: ");
                 String date = scanner.nextLine();
-                Date dueDate = new SimpleDateFormat("dd/mm/yyyy").parse(date);
-                teacher.addAssignment(id, description, courseId, dueDate);
+                Date dueDate = null;
+                try {
+                    dueDate = new SimpleDateFormat("dd/mm/yyyy").parse(date);
+                } catch (ParseException e) {
+                    System.out.println("Please Enter Date in the following format dd/mm/yyyy");
+                    return false;
+                }
+                ((Teacher)user).addAssignment(id, description, courseId, dueDate);
                 break;
             case ("6"):
                 print("////////////// Submitting Attendance /////////////");
@@ -75,10 +81,16 @@ public class TeacherUtil {
                 courseId = scanner.nextLine();
                 print("\tAttendance Date On Format dd/mm/yyyy: ");
                 date = scanner.nextLine();
-                Date attendanceDate = new SimpleDateFormat("dd/mm/yyyy").parse(date);
+                Date attendanceDate = null;
+                try {
+                    attendanceDate = new SimpleDateFormat("dd/mm/yyyy").parse(date);
+                } catch (ParseException e) {
+                    System.out.println("Please Enter Date in the following format dd/mm/yyyy");
+                    return false;
+                }
                 print("\tStatus: ");
                 String status = scanner.nextLine();
-                teacher.submitStudentAttendance(id,courseId,studentId,attendanceDate,status);
+                ((Teacher)user).submitStudentAttendance(id,courseId,studentId,attendanceDate,status);
                 break;
         }
         return false;

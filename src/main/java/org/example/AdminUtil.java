@@ -2,14 +2,15 @@ package org.example;
 
 import java.util.Scanner;
 
-public class AdminUtil {
+public class AdminUtil implements UserUtilInterface {
 
     public static void print(String words )
     {
         System.out.println(words);
     }
-    public static void welcomeAdmin()
-    {
+
+    @Override
+    public void welcome() {
         // TODO : Clear Screen Option.
         print("////////////// Welcome Admin /////////////");
         print("Choose a function :");
@@ -26,9 +27,8 @@ public class AdminUtil {
         print("\t 0: Log Out");
     }
 
-    public static boolean  handelAdminLogic(Admin admin,String function)
-    {
-
+    @Override
+    public boolean handleLogic(User user, String function) {
         Scanner scanner = new Scanner(System.in);
         switch (function) {
             case ("0"):
@@ -44,23 +44,23 @@ public class AdminUtil {
                 String email = scanner.nextLine();
                 print("\tTeacher Mobile Number: ");
                 String mobileNumber = scanner.nextLine();
-                admin.addTeacher(id, name, email, mobileNumber);
+                ((Admin)user).addTeacher(id, name, email, mobileNumber);
                 break;
             case ("2"):
                 print("////////////// Removing Teacher /////////////");
                 print("Enter The Teacher's ID");
                 id = scanner.nextLine();
-                admin.removeTeacher(id);
+                ((Admin)user).removeTeacher(id);
                 break;
             case ("3"):
                 print("////////////// Viewing All Teachers /////////////");
-                admin.viewAllTeachers();
+                ((Admin)user).viewAllTeachers();
                 break;
             case ("4"):
                 print("////////////// Viewing Teacher's Details /////////////");
                 print("Enter The Teacher's ID");
                 id = scanner.nextLine();
-                admin.viewTeacherDetails(id);
+                ((Admin)user).viewTeacherDetails(id);
                 break;
             case ("5"):
                 print("////////////// Updating Teacher's Data /////////////");
@@ -73,7 +73,7 @@ public class AdminUtil {
                 email = scanner.nextLine();
                 print("\tTeacher New Mobile Number: ");
                 mobileNumber = scanner.nextLine();
-                admin.updateTeacherData(id, name, email, mobileNumber);
+                ((Admin)user).updateTeacherData(id, name, email, mobileNumber);
                 break;
             case ("6"):
                 print("////////////// Adding Student /////////////");
@@ -95,24 +95,24 @@ public class AdminUtil {
                 Student.StudentBuilder builder =new Student.StudentBuilder();
                 builder.id(id).name(name).age(age).address(address).gender(gender).email(email).mobileNumber(mobileNumber);
                 Student student = builder.build();
-                admin.addStudent(student);
+                ((Admin)user).addStudent(student);
                 break;
             case ("7"):
                 print("////////////// Removing Student /////////////");
                 print("Enter The Student's ID");
                 id = scanner.nextLine();
-                admin.removeStudent(id);
+                ((Admin)user).removeStudent(id);
                 break;
             case ("8"):
                 print("////////////// Viewing All Students /////////////");
-                admin.viewAllStudents();
+                ((Admin)user).viewAllStudents();
                 break;
             case ("9"):
                 print("////////////// Viewing Student's Details /////////////");
                 print("Enter The Student's ID");
                 id = scanner.nextLine();
                 print(id);
-                admin.viewStudentDetails(id);
+                ((Admin)user).viewStudentDetails(id);
                 break;
             case ("10"):
                 print("////////////// Updating Student's Data /////////////");
@@ -131,9 +131,10 @@ public class AdminUtil {
                 gender = scanner.nextLine();
                 print("\tStudent Address: ");
                 address = scanner.nextLine();
-                admin.updateStudentData(id, name, email, mobileNumber,age,address,gender);
+                ((Admin)user).updateStudentData(id, name, email, mobileNumber,age,address,gender);
                 break;
         }
         return false;
     }
+    
 }

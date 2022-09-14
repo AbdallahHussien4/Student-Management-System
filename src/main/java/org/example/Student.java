@@ -4,7 +4,7 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Objects;
 
-public class Student {
+public class Student extends User{
 
     public  static class StudentBuilder{
         private String id;
@@ -56,20 +56,13 @@ public class Student {
             return this;
         }
     }
-    private String id;
-    private String name;
-    private String email;
-    private String mobileNumber;
     private String age;
     private String address;
     private String gender;
     private HashSet<Course> courses;
 
     public Student(StudentBuilder builder) {
-        this.id = builder.id;
-        this.name = builder.name;
-        this.email = builder.email;
-        this.mobileNumber = builder.mobileNumber;
+        super(builder.id,builder.name,builder.email,builder.mobileNumber);
         this.age = builder.age;
         this.address = builder.address;
         this.gender = builder.gender;
@@ -129,10 +122,10 @@ public class Student {
     @Override
     public String toString() {
         return "Student{" +
-                "id='" + id + '\'' +
-                ", name='" + name + '\'' +
-                ", email='" + email + '\'' +
-                ", mobileNumber='" + mobileNumber + '\'' +
+                "id='" + getId() + '\'' +
+                ", name='" + getName() + '\'' +
+                ", email='" + getEmail() + '\'' +
+                ", mobileNumber='" + getMobileNumber() + '\'' +
                 ", age='" + age + '\'' +
                 ", address='" + address + '\'' +
                 ", gender='" + gender + '\'' +
@@ -142,7 +135,7 @@ public class Student {
 
     public void submitAssignment(String assignmentId, String courseId, Date submissionDate, String assignmentContentSubmitted, float assignmentMarks)
     {
-        AssignmentSubmission as = new AssignmentSubmission(assignmentId,this.id,courseId,submissionDate,assignmentContentSubmitted,assignmentMarks);
+        AssignmentSubmission as = new AssignmentSubmission(assignmentId,getId(),courseId,submissionDate,assignmentContentSubmitted,assignmentMarks);
         Singleton.getSingleton().getAssignmentSubmissions().add(as);
         System.out.println("Assignment Submitted");
     }
@@ -151,46 +144,12 @@ public class Student {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Student student = (Student) o;
-        return id.equals(student.id) ;
+        return this.getId().equals(student.getId()) ;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id);
-    }
-
-
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getMobileNumber() {
-        return mobileNumber;
-    }
-
-    public void setMobileNumber(String mobileNumber) {
-        this.mobileNumber = mobileNumber;
+        return Objects.hash(getId());
     }
 
     public String getAge() {

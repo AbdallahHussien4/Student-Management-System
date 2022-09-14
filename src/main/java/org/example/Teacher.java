@@ -4,19 +4,11 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Objects;
 
-public class Teacher {
+public class Teacher extends User {
 
-    private String id;
-    private String name;
-    private String email;
-
-    private String mobileNumber;
 
     public Teacher(String id, String name, String email, String mobileNumber) {
-        this.id = id;
-        this.name = name;
-        this.email = email;
-        this.mobileNumber = mobileNumber;
+        super(id,name,email,mobileNumber);
     }
 
     public void addAssignment(String id, String description, String courseId, Date dueDate)
@@ -101,10 +93,10 @@ public class Teacher {
     @Override
     public String toString() {
         return "Teacher{" +
-                "id='" + id + '\'' +
-                ", name='" + name + '\'' +
-                ", email='" + email + '\'' +
-                ", mobileNumber='" + mobileNumber + '\'' +
+                "id='" + this.getId() + '\'' +
+                ", name='" + getName() + '\'' +
+                ", email='" + getEmail() + '\'' +
+                ", mobileNumber='" + getMobileNumber() + '\'' +
                 '}';
     }
 
@@ -113,45 +105,12 @@ public class Teacher {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Teacher teacher = (Teacher) o;
-        return Objects.equals(id, teacher.id);
+        return Objects.equals(this.getId(), teacher.getId());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id);
+        return Objects.hash(getId());
     }
-
-
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getMobileNumber() {
-        return mobileNumber;
-    }
-
-    public void setMobileNumber(String mobileNumber) {
-        this.mobileNumber = mobileNumber;
-    }
+    
 }

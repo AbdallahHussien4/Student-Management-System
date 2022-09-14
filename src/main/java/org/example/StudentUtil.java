@@ -5,14 +5,14 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Scanner;
 
-public class StudentUtil {
+public class StudentUtil implements UserUtilInterface{
     public static void print(String words )
     {
         System.out.println(words);
     }
 
-    public static void welcomeStudent()
-    {
+    @Override
+    public void welcome() {
         print("////////////// Welcome Teacher /////////////");
         print("Choose a function :");
         print("\t 1: View Enrolled Courses ");
@@ -22,21 +22,21 @@ public class StudentUtil {
         print("\t 0: Log Out ");
     }
 
-    public static boolean handleStudentLogic(Student student,String function) throws ParseException {
-
+    @Override
+    public boolean handleLogic(User user, String function) {
         Scanner scanner = new Scanner(System.in);
         switch (function) {
             case ("0"):
                 return true;
             case ("1"):
                 print("////////////// Viewing All Enrolled Courses /////////////");
-                student.viewEnrollCourses();
+                ((Student)user).viewEnrollCourses();
                 break;
             case ("2"):
                 print("////////////// Viewing All Assignments /////////////");
                 print("Enter The Course's ID");
                 String id = scanner.nextLine();
-                student.viewAssignments(id);
+                ((Student)user).viewAssignments(id);
                 break;
             case ("3"):
                 print("////////////// Submit Assignment /////////////");
@@ -47,20 +47,27 @@ public class StudentUtil {
                 String courseId = scanner.nextLine();
                 print("\tSubmission Date On Format dd/mm/yyyy: ");
                 String date = scanner.nextLine();
-                Date SubmissionDate = new SimpleDateFormat("dd/mm/yyyy").parse(date);
+                Date SubmissionDate = null;
+                try {
+                    SubmissionDate = new SimpleDateFormat("dd/mm/yyyy").parse(date);
+                } catch (ParseException e) {
+                    System.out.println("Please Enter Date iin the following format dd/mm/yyyy");
+                    return  false;
+                }
                 print("\tSubmission Content: ");
                 String content = scanner.nextLine();
                 print("\tMarks: ");
                 float marks = scanner.nextFloat();
-                student.submitAssignment(id,courseId,SubmissionDate,content,marks);
+                ((Student)user).submitAssignment(id,courseId,SubmissionDate,content,marks);
                 break;
             case("4"):
                 print("////////////// Enrolling in a Course /////////////");
                 print("Enter The Course's ID");
                 id = scanner.nextLine();
-                student.enrollCourse(id);
+                ((Student)user).enrollCourse(id);
                 break;
         }
         return false;
     }
+    
 }

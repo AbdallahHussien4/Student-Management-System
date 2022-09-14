@@ -32,24 +32,26 @@ public class Main {
             String role = scanner.nextLine();
             switch (role) {
                 case ("1"):
-                    Admin admin = new Admin("0","Admin1","Admin1@School.com","0123456789");
+                    User admin = new Admin("0","Admin1","Admin1@School.com","0123456789");
+                    AdminUtil adminUtil = new AdminUtil();
                     boolean exitAdmin = false;
                     while(true && !exitAdmin)
                     {
-                        AdminUtil.welcomeAdmin();
+                        adminUtil.welcome();
                         String function = scanner.nextLine();
-                        exitAdmin = AdminUtil.handelAdminLogic(admin,function);
+                        exitAdmin = adminUtil.handleLogic(admin,function);
                         TimeUnit.SECONDS.sleep(2);
                     }
                     break;
                 case ("2"):
-                    Teacher teacher = new Teacher("0","Teacher0","Teacher0@School.com","01234567891");
+                    User teacher = new Teacher("0","Teacher0","Teacher0@School.com","01234567891");
+                    TeacherUtil teacherUtil = new TeacherUtil();
                     boolean exitTeacher = false;
                     while(true && !exitTeacher)
                     {
-                        TeacherUtil.welcomeTeacher();
+                        teacherUtil.welcome();
                         String function = scanner.nextLine();
-                        exitTeacher = TeacherUtil.handelTeacherLogic(teacher,function);
+                        exitTeacher = teacherUtil.handleLogic(teacher,function);
                         TimeUnit.SECONDS.sleep(2);
                     }
                     break;
@@ -57,13 +59,14 @@ public class Main {
                     Student.StudentBuilder builder = new Student.StudentBuilder();
                     builder.id("0").name("Student0");
                     builder.build();
-                    Student student=new Student(builder);
+                    User student=new Student(builder);
+                    StudentUtil studentUtil = new StudentUtil();
                     boolean exitStudent = false;
                     while(true && !exitStudent)
                     {
-                        StudentUtil.welcomeStudent();
+                        studentUtil.welcome();
                         String function = scanner.nextLine();
-                        exitStudent = StudentUtil.handleStudentLogic(student,function);
+                        exitStudent = studentUtil.handleLogic(student,function);
                         TimeUnit.SECONDS.sleep(2);
                     }
                     break;
