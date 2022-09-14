@@ -23,7 +23,6 @@ public class Main {
     public static void main(String[] args) throws ParseException, InterruptedException {
         Seeds.seed();
         boolean exit = false;
-        // TODO : User & UserUtil Interfaces.
         // TODO : Strategy Design Pattern
         while(true && !exit)
         {
