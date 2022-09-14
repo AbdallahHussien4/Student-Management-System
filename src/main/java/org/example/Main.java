@@ -1,10 +1,15 @@
 package org.example;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.text.ParseException;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
 public class Main {
+
+    private static final Logger logger =  LogManager.getLogger(Main.class);
     public static void print(String words )
     {
         System.out.println(words);
@@ -20,7 +25,7 @@ public class Main {
         print("\t 0: Exit");
     }
 
-    public static void main(String[] args) throws ParseException, InterruptedException {
+    public static void main(String[] args)  {
         Seeds.seed();
         boolean exit = false;
         // TODO : Strategy Design Pattern
@@ -39,7 +44,6 @@ public class Main {
                         adminUtil.welcome();
                         String function = scanner.nextLine();
                         exitAdmin = adminUtil.handleLogic(admin,function);
-                        TimeUnit.SECONDS.sleep(2);
                     }
                     break;
                 case ("2"):
@@ -51,7 +55,6 @@ public class Main {
                         teacherUtil.welcome();
                         String function = scanner.nextLine();
                         exitTeacher = teacherUtil.handleLogic(teacher,function);
-                        TimeUnit.SECONDS.sleep(2);
                     }
                     break;
                 case ("3"):
@@ -66,7 +69,6 @@ public class Main {
                         studentUtil.welcome();
                         String function = scanner.nextLine();
                         exitStudent = studentUtil.handleLogic(student,function);
-                        TimeUnit.SECONDS.sleep(2);
                     }
                     break;
                 case ("0"):
