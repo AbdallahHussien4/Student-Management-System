@@ -1,6 +1,5 @@
 package org.example;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 
 public class Admin extends User{
@@ -13,17 +12,20 @@ public class Admin extends User{
     //////////// Manage Teachers Functions ////////////
     void addTeacher(String id, String name, String email, String number)
     {
-        //TODO : UUID Class Numeric ID.
+        Main.logger.info("Adding New Teacher...");
         Teacher teacher = new Teacher(id,name,email,number);
-        System.out.println("Added teacher : " +name);
         HashSet<Teacher> teachers = Singleton.getSingleton().getTeachers();
         if(teachers.contains(teacher))  // TODO : Use Exceptions
-            System.out.println("Teacher with ID: "+ id +" already exists."); // TODO : (Log For J V2).
+        {
+            Main.logger.error(String.format("Teacher with ID: %s already exists.",id));
+            return;
+        }
+        Main.logger.info(String.format("Teacher %s added successfully",name));
         teachers.add(teacher);
     }
     void removeTeacher(String id)
     {
-        System.out.println("Remove teacher with ID: " +id);
+        Main.logger.info(String.format("Removing teacher with ID: %s",id));
         HashSet<Teacher> teachers = Singleton.getSingleton().getTeachers();
         boolean found = false;
         for (Teacher teacher : teachers) {

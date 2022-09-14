@@ -3,13 +3,19 @@ package org.example;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.text.ParseException;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Properties;
 import java.util.Scanner;
-import java.util.concurrent.TimeUnit;
 
 public class Main {
 
-    private static final Logger logger =  LogManager.getLogger(Main.class);
+    private static String id;
+    private static String name;
+    private static String email;
+    private static String mobileNumber;
+    protected static final Logger logger =  LogManager.getLogger(Main.class);
     public static void print(String words )
     {
         System.out.println(words);
@@ -26,57 +32,45 @@ public class Main {
     }
 
     public static void main(String[] args)  {
+        // Seed DB with dummy objects.
         Seeds.seed();
+        // Read user info from properties file.
+        try (InputStream input = new FileInputStream("src/main/resources/info.properties")) {
+
+            Properties prop = new Properties();
+            // load a properties file
+            prop.load(input);
+            // get the property value and print it out
+            id = prop.getProperty("id");
+            name = prop.getProperty("name");
+            email = prop.getProperty("email");
+            mobileNumber = prop.getProperty("mobileNumber");
+
+        } catch ( IOException ex) {
+            logger.error("Can't open properties file");
+        }
         boolean exit = false;
-        // TODO : Strategy Design Pattern
         while(true && !exit)
         {
+
             welcomeGeneral();
             Scanner scanner = new Scanner(System.in);
             String role = scanner.nextLine();
-            switch (role) {
-                case ("1"):
-                    User admin = new Admin("0","Admin1","Admin1@School.com","0123456789");
-                    AdminUtil adminUtil = new AdminUtil();
-                    boolean exitAdmin = false;
-                    while(true && !exitAdmin)
-                    {
-                        adminUtil.welcome();
-                        String function = scanner.nextLine();
-                        exitAdmin = adminUtil.handleLogic(admin,function);
-                    }
-                    break;
-                case ("2"):
-                    User teacher = new Teacher("0","Teacher0","Teacher0@School.com","01234567891");
-                    TeacherUtil teacherUtil = new TeacherUtil();
-                    boolean exitTeacher = false;
-                    while(true && !exitTeacher)
-                    {
-                        teacherUtil.welcome();
-                        String function = scanner.nextLine();
-                        exitTeacher = teacherUtil.handleLogic(teacher,function);
-                    }
-                    break;
-                case ("3"):
-                    Student.StudentBuilder builder = new Student.StudentBuilder();
-                    builder.id("0").name("Student0");
-                    builder.build();
-                    User student=new Student(builder);
-                    StudentUtil studentUtil = new StudentUtil();
-                    boolean exitStudent = false;
-                    while(true && !exitStudent)
-                    {
-                        studentUtil.welcome();
-                        String function = scanner.nextLine();
-                        exitStudent = studentUtil.handleLogic(student,function);
-                    }
-                    break;
-                case ("0"):
-                    exit = true;
-                    break;
-                default:
-                    print("Please Enter Valid Role");
-                    break;
+            if (role.equals("0"))
+            {
+                exit = true;
+                break;
+            }
+            UtilFactory utilFactory = new UtilFactory();
+            UserUtilInterface userUtilInterface = utilFactory.getUtil(role);
+            UserFactory userFactory = new UserFactory();
+            User user = userFactory.getUser(role,id,name,email,mobileNumber);
+            boolean exitUser = false;
+            while(true && !exitUser)
+            {
+                userUtilInterface.welcome();
+                String function = scanner.nextLine();
+                exitUser = userUtilInterface.handleLogic(user,function);
             }
         }
     }
