@@ -15,13 +15,13 @@ public class TeacherUtil {
     {
         print("////////////// Welcome Teacher /////////////");
         print("Choose a function :");
-        print("\t View All Students in All Courses : 1");
-        print("\t View Student in One Course : 2");
-        print("\t View All Courses : 3");
-        print("\t View Students Data : 4");
-        print("\t Add Assignment : 5");
-        print("\t Submit Attendance : 6");
-        print("\t Log Out : 0");
+        print("\t 1: View All Students in All Courses");
+        print("\t 2: View Student in One Course");
+        print("\t 3: View All Courses");
+        print("\t 4: View Students Data");
+        print("\t 5: Add Assignment");
+        print("\t 6: Submit Attendance");
+        print("\t 0: Log Out");
     }
 
     public static boolean  handelTeacherLogic(Teacher teacher,String function) throws ParseException {

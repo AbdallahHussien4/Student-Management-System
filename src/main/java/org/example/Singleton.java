@@ -12,6 +12,15 @@ public class Singleton {
     private HashSet<CourseAttendance> courseAttendances;
 
     private Singleton() {}
+    public static Singleton getSingleton()
+    {
+        //TODO : Syncronized
+        //Enum
+        //Eagur
+        if (singleton == null)
+            singleton = new Singleton();
+        return singleton;
+    }
     public HashSet<Teacher> getTeachers()
     {
         if (teachers == null)
@@ -25,12 +34,7 @@ public class Singleton {
         return students;
     }
 
-    public static Singleton getSingleton()
-    {
-        if (singleton == null)
-            singleton = new Singleton();
-        return singleton;
-    }
+
     public HashSet<Course> getCourses()
     {
         if (courses == null)

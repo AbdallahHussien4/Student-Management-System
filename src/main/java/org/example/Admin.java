@@ -19,11 +19,12 @@ public class Admin {
     //////////// Manage Teachers Functions ////////////
     void addTeacher(String id, String name, String email, String number)
     {
+        //TODO : UUID Class Numeric ID.
         Teacher teacher = new Teacher(id,name,email,number);
         System.out.println("Added teacher : " +name);
         HashSet<Teacher> teachers = Singleton.getSingleton().getTeachers();
-        if(teachers.contains(teacher))
-            System.out.println("Teacher with ID: "+ id +" already exists.");
+        if(teachers.contains(teacher))  // TODO : Use Exceptions
+            System.out.println("Teacher with ID: "+ id +" already exists."); // TODO : (Log For J V2).
         teachers.add(teacher);
     }
     void removeTeacher(String id)
@@ -46,6 +47,7 @@ public class Admin {
     }
     void viewAllTeachers()
     {
+        // TODO : View ALL Data (String.Format)
         System.out.println("List Of Teachers :");
 
         for(Teacher t : Singleton.getSingleton().getTeachers())

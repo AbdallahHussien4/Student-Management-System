@@ -15,11 +15,11 @@ public class StudentUtil {
     {
         print("////////////// Welcome Teacher /////////////");
         print("Choose a function :");
-        print("\t View Enrolled Courses : 1");
-        print("\t View Assignments : 2");
-        print("\t Submit Assignment : 3");
-        print("\t Enroll Course : 4");
-        print("\t Log Out : 0");
+        print("\t 1: View Enrolled Courses ");
+        print("\t 2: View Assignments ");
+        print("\t 3: Submit Assignment ");
+        print("\t 4: Enroll Course ");
+        print("\t 0: Log Out ");
     }
 
     public static boolean handleStudentLogic(Student student,String function) throws ParseException {

@@ -10,19 +10,20 @@ public class AdminUtil {
     }
     public static void welcomeAdmin()
     {
+        // TODO : Clear Screen Option.
         print("////////////// Welcome Admin /////////////");
         print("Choose a function :");
-        print("\t Add Teacher : 1");
-        print("\t Remove Teacher : 2");
-        print("\t View All Teachers : 3");
-        print("\t View Teacher Details : 4");
-        print("\t Update Teacher Data : 5");
-        print("\t Add Student : 6");
-        print("\t Remove Student : 7");
-        print("\t View All Students : 8");
-        print("\t View Student Details : 9");
-        print("\t Update Student Data : 10");
-        print("\t Log Out : 0");
+        print("\t 1: Add Teacher");
+        print("\t 2: Remove Teacher");
+        print("\t 3: View All Teachers");
+        print("\t 4: View Teacher Details");
+        print("\t 5: Update Teacher Data");
+        print("\t 6: Add Student");
+        print("\t 7: Remove Student");
+        print("\t 8: View All Students");
+        print("\t 9: View Student Details");
+        print("\t 10: Update Student Data ");
+        print("\t 0: Log Out");
     }
 
     public static boolean  handelAdminLogic(Admin admin,String function)

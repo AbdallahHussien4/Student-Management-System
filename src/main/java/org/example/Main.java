@@ -2,6 +2,7 @@ package org.example;
 
 import java.text.ParseException;
 import java.util.Scanner;
+import java.util.concurrent.TimeUnit;
 
 public class Main {
     public static void print(String words )
@@ -13,15 +14,17 @@ public class Main {
     {
         print("////////////// Welcome /////////////");
         print("Please Enter Your Role Number:");
-        print("\t Admin : 1");
-        print("\t Teacher : 2");
-        print("\t Student : 3");
-        print("\t Exit : 0");
+        print("\t 1: Admin");
+        print("\t 2: Teacher");
+        print("\t 3: Student");
+        print("\t 0: Exit");
     }
 
-    public static void main(String[] args) throws ParseException {
+    public static void main(String[] args) throws ParseException, InterruptedException {
         Seeds.seed();
         boolean exit = false;
+        // TODO : User & UserUtil Interfaces.
+        // TODO : Strategy Design Pattern
         while(true && !exit)
         {
             welcomeGeneral();
@@ -36,6 +39,7 @@ public class Main {
                         AdminUtil.welcomeAdmin();
                         String function = scanner.nextLine();
                         exitAdmin = AdminUtil.handelAdminLogic(admin,function);
+                        TimeUnit.SECONDS.sleep(2);
                     }
                     break;
                 case ("2"):
@@ -46,6 +50,7 @@ public class Main {
                         TeacherUtil.welcomeTeacher();
                         String function = scanner.nextLine();
                         exitTeacher = TeacherUtil.handelTeacherLogic(teacher,function);
+                        TimeUnit.SECONDS.sleep(2);
                     }
                     break;
                 case ("3"):
@@ -59,6 +64,7 @@ public class Main {
                         StudentUtil.welcomeStudent();
                         String function = scanner.nextLine();
                         exitStudent = StudentUtil.handleStudentLogic(student,function);
+                        TimeUnit.SECONDS.sleep(2);
                     }
                     break;
                 case ("0"):
