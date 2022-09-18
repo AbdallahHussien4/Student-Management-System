@@ -75,7 +75,7 @@ public class Student extends User{
             {
                 course.getStudents().add(this);
                 this.courses.add(course);
-                Main.logger.info("Student Enrolled Successfully");
+                System.out.println("Student Enrolled Successfully");
                 return;
             }
         }
@@ -120,6 +120,9 @@ public class Student extends User{
 
     }
 
+    public Student(){
+        super();
+    }
     @Override
     public String toString() {
         return "Student{" +
