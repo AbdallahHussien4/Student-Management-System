@@ -33,7 +33,11 @@ public class Main {
 
     public static void main(String[] args)  {
         // Seed DB with dummy objects.
-        Seeds.seed();
+        try {
+            Seeds.seed();
+        } catch (NotFoundException e) {
+            logger.error("Can't Seed database");
+        }
         // Read user info from properties file.
         try (InputStream input = new FileInputStream("src/main/resources/info.properties")) {
 
@@ -70,7 +74,11 @@ public class Main {
             {
                 userUtilInterface.welcome();
                 String function = scanner.nextLine();
-                exitUser = userUtilInterface.handleLogic(user,function);
+                try {
+                    exitUser = userUtilInterface.handleLogic(user,function);
+                } catch (NotFoundException e) {
+                    Main.logger.error(e.getMessage());
+                }
             }
         }
     }

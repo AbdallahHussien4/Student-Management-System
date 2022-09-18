@@ -23,7 +23,7 @@ public class StudentUtil implements UserUtilInterface{
     }
 
     @Override
-    public boolean handleLogic(User user, String function) {
+    public boolean handleLogic(User user, String function) throws NotFoundException {
         Scanner scanner = new Scanner(System.in);
         switch (function) {
             case ("0"):

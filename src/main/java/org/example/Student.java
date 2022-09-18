@@ -68,55 +68,56 @@ public class Student extends User{
         this.gender = builder.gender;
         this.courses = new HashSet<Course>();
     }
-    public void enrollCourse(String courseID)
-    {
+    public void enrollCourse(String courseID) throws NotFoundException {
         HashSet<Course> courses = Singleton.getSingleton().getCourses();
-        boolean found = false;
         for (Course course : courses) {
-
             if(course.getId().equals(courseID))
             {
                 course.getStudents().add(this);
                 this.courses.add(course);
-                found = true;
-                System.out.println("Student Enrolled");
+                Main.logger.info("Student Enrolled Successfully");
+                return;
             }
         }
-        if(!found)
-            System.out.println("Course not found");
+        throw (new NotFoundException(String.format("Course with ID: %s not found",courseID)));
+
     }
 
     public void viewEnrollCourses()
     {
         if(this.courses.isEmpty())
         {
-            System.out.println("Student is not enrolled in any courses");
+            Main.logger.info("Student is not enrolled in any courses");
             return;
         }
         System.out.println("Enrolled Courses: ");
 
         for(Course course: this.courses)
         {
-            System.out.println(course.getName());
+            System.out.println(course);
         }
     }
-    public void viewAssignments(String courseId)
-    {
-        boolean found=false;
+    public void viewAssignments(String courseId) throws NotFoundException {
+
         for(Course course:Singleton.getSingleton().getCourses())
         {
             if(course.getId().equals(courseId))
             {
+                if(course.getAssignments().isEmpty())
+                {
+                    Main.logger.info("No assignments Found");
+                    return;
+                }
                 System.out.println("List of Assignments");
-                found = true;
                 for(Assignment assignment: course.getAssignments())
                 {
                     System.out.println(assignment.getId());
                 }
+                return;
             }
         }
-        if(!found)
-            System.out.println("Course Not Found");
+        throw (new NotFoundException(String.format("Course with ID: %s not found",courseId)));
+
     }
 
     @Override
@@ -137,7 +138,7 @@ public class Student extends User{
     {
         AssignmentSubmission as = new AssignmentSubmission(assignmentId,getId(),courseId,submissionDate,assignmentContentSubmitted,assignmentMarks);
         Singleton.getSingleton().getAssignmentSubmissions().add(as);
-        System.out.println("Assignment Submitted");
+        Main.logger.info("Assignment Submitted Successfully");
     }
     @Override
     public boolean equals(Object o) {

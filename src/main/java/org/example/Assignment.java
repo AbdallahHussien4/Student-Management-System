@@ -15,6 +15,16 @@ public class Assignment {
         this.dueDate = dueDate;
     }
 
+    @Override
+    public String toString() {
+        return "Assignment{" +
+                "id='" + id + '\'' +
+                ", description='" + description + '\'' +
+                ", courseId='" + courseId + '\'' +
+                ", dueDate=" + dueDate +
+                '}';
+    }
+
     public String getId() {
         return id;
     }

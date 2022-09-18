@@ -28,7 +28,7 @@ public class AdminUtil implements UserUtilInterface {
     }
 
     @Override
-    public boolean handleLogic(User user, String function) {
+    public boolean handleLogic(User user, String function) throws NotFoundException {
         Scanner scanner = new Scanner(System.in);
         switch (function) {
             case ("0"):
@@ -117,13 +117,13 @@ public class AdminUtil implements UserUtilInterface {
             case ("10"):
                 print("////////////// Updating Student's Data /////////////");
                 print("Enter The Following Information:");
-                print("\tTeacher Old ID: ");
+                print("\tStudent Old ID: ");
                 id = scanner.nextLine();
-                print("\tTeacher New Name: ");
+                print("\tStudent New Name: ");
                 name = scanner.nextLine();
-                print("\tTeacher New Email: ");
+                print("\tStudent New Email: ");
                 email = scanner.nextLine();
-                print("\tTeacher New Mobile Number: ");
+                print("\tStudent New Mobile Number: ");
                 mobileNumber = scanner.nextLine();
                 print("\tStudent Age: ");
                 age = scanner.nextLine();

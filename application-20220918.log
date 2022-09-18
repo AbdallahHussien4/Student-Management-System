@@ -1,0 +1,56 @@
+2022-09-18 10:06:17.222 [main] INFO  org.example.Main - Adding New Teacher...
+2022-09-18 10:06:17.224 [main] ERROR org.example.Main - Teacher with ID: 1 already exists.
+2022-09-18 10:07:09.398 [main] INFO  org.example.Main - Adding New Teacher...
+2022-09-18 10:07:09.401 [main] ERROR org.example.Main - Teacher with ID: 1 already exists.
+2022-09-18 10:10:40.435 [main] INFO  org.example.Main - Adding New Teacher...
+2022-09-18 10:10:40.437 [main] ERROR org.example.Main - Teacher with ID: 1 already exists.
+2022-09-18 10:13:22.827 [main] INFO  org.example.Main - Removing teacher with ID: 1
+2022-09-18 10:13:31.540 [main] INFO  org.example.Main - Removing teacher with ID: 1
+2022-09-18 10:13:31.541 [main] ERROR org.example.Main - Teacher with ID: 1 not found.
+2022-09-18 10:17:40.202 [main] ERROR org.example.Main - Teacher with ID: 5 not found.
+2022-09-18 10:32:21.187 [main] INFO  org.example.Main - Adding New Student...
+2022-09-18 10:32:21.189 [main] ERROR org.example.Main - Student with ID: 1 already exists.
+2022-09-18 10:32:34.713 [main] INFO  org.example.Main - Adding New Student...
+2022-09-18 10:32:34.713 [main] INFO  org.example.Main - Student  added successfully
+2022-09-18 10:32:46.913 [main] INFO  org.example.Main - Removing student with ID: 7
+2022-09-18 10:32:46.913 [main] ERROR org.example.Main - Student with ID: 7 not found
+2022-09-18 10:33:21.243 [main] ERROR org.example.Main - Student with ID: 6 not found
+2022-09-18 10:47:29.622 [main] INFO  org.example.Main - Student Enrolled Successfully
+2022-09-18 10:47:29.624 [main] INFO  org.example.Main - Student Enrolled Successfully
+2022-09-18 10:47:29.624 [main] INFO  org.example.Main - Student Enrolled Successfully
+2022-09-18 10:47:49.413 [main] INFO  org.example.Main - Student is not enrolled in any courses
+2022-09-18 10:48:02.608 [main] INFO  org.example.Main - Student Enrolled Successfully
+2022-09-18 10:49:25.231 [main] INFO  org.example.Main - Student Enrolled Successfully
+2022-09-18 10:49:25.233 [main] INFO  org.example.Main - Student Enrolled Successfully
+2022-09-18 10:49:25.233 [main] INFO  org.example.Main - Student Enrolled Successfully
+2022-09-18 10:49:29.905 [main] INFO  org.example.Main - Student Enrolled Successfully
+2022-09-18 10:49:55.710 [main] INFO  org.example.Main - Student Enrolled Successfully
+2022-09-18 10:49:55.712 [main] INFO  org.example.Main - Student Enrolled Successfully
+2022-09-18 10:49:55.712 [main] INFO  org.example.Main - Student Enrolled Successfully
+2022-09-18 10:50:00.757 [main] INFO  org.example.Main - Student Enrolled Successfully
+2022-09-18 10:50:30.605 [main] INFO  org.example.Main - Student Enrolled Successfully
+2022-09-18 10:50:30.607 [main] INFO  org.example.Main - Student Enrolled Successfully
+2022-09-18 10:50:30.607 [main] INFO  org.example.Main - Student Enrolled Successfully
+2022-09-18 10:50:34.348 [main] INFO  org.example.Main - Student Enrolled Successfully
+2022-09-18 10:51:37.792 [main] INFO  org.example.Main - Student Enrolled Successfully
+2022-09-18 10:51:37.794 [main] INFO  org.example.Main - Student Enrolled Successfully
+2022-09-18 10:51:37.794 [main] INFO  org.example.Main - Student Enrolled Successfully
+2022-09-18 10:52:08.219 [main] INFO  org.example.Main - Student Enrolled Successfully
+2022-09-18 10:52:08.221 [main] INFO  org.example.Main - Student Enrolled Successfully
+2022-09-18 10:52:08.221 [main] INFO  org.example.Main - Student Enrolled Successfully
+2022-09-18 10:52:36.942 [main] INFO  org.example.Main - Student Enrolled Successfully
+2022-09-18 10:52:36.944 [main] INFO  org.example.Main - Student Enrolled Successfully
+2022-09-18 10:52:36.944 [main] INFO  org.example.Main - Student Enrolled Successfully
+2022-09-18 10:52:59.969 [main] INFO  org.example.Main - Student Enrolled Successfully
+2022-09-18 10:52:59.971 [main] INFO  org.example.Main - Student Enrolled Successfully
+2022-09-18 10:52:59.971 [main] INFO  org.example.Main - Student Enrolled Successfully
+2022-09-18 10:53:53.564 [main] INFO  org.example.Main - Student Enrolled Successfully
+2022-09-18 10:53:53.566 [main] INFO  org.example.Main - Student Enrolled Successfully
+2022-09-18 10:53:53.566 [main] INFO  org.example.Main - Student Enrolled Successfully
+2022-09-18 10:54:16.505 [main] INFO  org.example.Main - Student Enrolled Successfully
+2022-09-18 10:54:16.506 [main] INFO  org.example.Main - Student Enrolled Successfully
+2022-09-18 10:54:16.507 [main] INFO  org.example.Main - Student Enrolled Successfully
+2022-09-18 10:54:34.414 [main] INFO  org.example.Main - Student Enrolled Successfully
+2022-09-18 10:54:34.416 [main] INFO  org.example.Main - Student Enrolled Successfully
+2022-09-18 10:54:34.416 [main] INFO  org.example.Main - Student Enrolled Successfully
+2022-09-18 10:55:36.426 [main] INFO  org.example.Main - Student Enrolled Successfully

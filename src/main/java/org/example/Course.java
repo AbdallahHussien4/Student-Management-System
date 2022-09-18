@@ -7,6 +7,8 @@ public class Course {
     private String name;
     private HashSet<Student> students;
 
+
+
     private HashSet<Assignment> assignments;
 
     public Course(String id, String name) {
@@ -15,7 +17,15 @@ public class Course {
         this.students = new HashSet<Student>();
         this.assignments = new HashSet<Assignment>();
     }
-
+    @Override
+    public String toString() {
+        return "Course{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+//                ", students=" + students +
+                ", assignments=" + assignments +
+                '}';
+    }
     public void addAssignment(Assignment assignment)
     {
         this.assignments.add(assignment);

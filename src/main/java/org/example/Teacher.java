@@ -11,22 +11,20 @@ public class Teacher extends User {
         super(id,name,email,mobileNumber);
     }
 
-    public void addAssignment(String id, String description, String courseId, Date dueDate)
-    {
+    public void addAssignment(String id, String description, String courseId, Date dueDate) throws NotFoundException {
         Assignment assignment = new Assignment(id,description,courseId,dueDate);
         HashSet<Course> courses = Singleton.getSingleton().getCourses();
-        boolean found=false;
         for(Course course: courses)
         {
             if(course.getId().equals(courseId))
             {
                 course.addAssignment(assignment);
-                System.out.println("Assignment Added");
-                found = true;
+                Main.logger.info("Assignment Added Successfully");
+                return;
             }
         }
-        if(!found)
-            System.out.println("Course Not Found");
+        throw (new NotFoundException(String.format("Course with ID: %s not found",id)));
+
     }
 
     public void viewStudentsAssignedClasses()
@@ -42,22 +40,20 @@ public class Teacher extends User {
         }
     }
 
-    public void getStudentsInCourse(String courseId)
-    {
-        boolean found= false;
+    public void getStudentsInCourse(String courseId) throws NotFoundException {
         for(Course course :Singleton.getSingleton().getCourses())
         {
             if(course.getId().equals(courseId)) {
                 System.out.print("All Students for ");
                 System.out.println("Class " + course.getName());
-                found = true;
                 for (Student student : course.getStudents()) {
                     System.out.println("\t\t" + student.getName());
                 }
+                return;
             }
         }
-        if(!found)
-            System.out.println("Course not found");
+        throw (new NotFoundException(String.format("Course with ID: %s not found",courseId)));
+
     }
 
     public void getAllCourses()
@@ -68,26 +64,23 @@ public class Teacher extends User {
             System.out.println("\t" + course.getName());
         }
     }
-    public void getStudentData(String studentID)
-    {
-        boolean found= false;
+    public void getStudentData(String studentID) throws NotFoundException {
         for(Student student :Singleton.getSingleton().getStudents())
         {
             if(student.getId().equals(studentID))
             {
                 System.out.println(student);
-                found=true;
+                return;
             }
         }
-        if(!found)
-            System.out.println("Student not Found");
+        throw (new NotFoundException(String.format("Student with ID: %s not found",studentID)));
     }
 
     public void submitStudentAttendance(String id, String courseId, String studentId, Date attendanceDate, String status)
     {
         CourseAttendance ca = new CourseAttendance(id,courseId,studentId,attendanceDate,status);
         Singleton.getSingleton().getCourseAttendances().add(ca);
-        System.out.println("Attendance Submitted");
+        Main.logger.info("Attendance Submitted Successfully");
     }
 
     @Override

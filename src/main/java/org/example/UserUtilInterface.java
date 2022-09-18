@@ -6,5 +6,5 @@ public interface UserUtilInterface {
         System.out.println(words);
     }
     public void welcome();
-    public boolean  handleLogic(User user,String function);
+    public boolean  handleLogic(User user,String function) throws NotFoundException;
 }

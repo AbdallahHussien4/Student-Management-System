@@ -1,8 +1,7 @@
 package org.example;
 
 public class Seeds {
-    public static void seed()
-    {
+    public static void seed() throws NotFoundException {
         for(int i=1;i<=3;i++) {
             String id = Integer.toString(i);
             Teacher teacher = new Teacher(id, "Teacher" + id, id + "@yahoo.com", "0123456789" + id);
