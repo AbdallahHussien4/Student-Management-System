@@ -33,6 +33,18 @@ public class DBFile {
 
                 System.out.println(st);
             }
+            // lamda ex
+        LamdaTest d = new LamdaTestImpl();
+            d = new LamdaTest() {
+                @Override
+                public void print() {
+
+                }
+            };
+            d = ()->{
+
+            };
+//            d = ()-> ;
         } catch (SQLException e) {
             throw new IllegalStateException("Cannot connect the database!", e);
         }
